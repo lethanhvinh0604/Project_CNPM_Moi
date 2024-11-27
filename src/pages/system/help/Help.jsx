@@ -39,7 +39,7 @@ function Help() {
           </div>
         </div>
         <a
-          href="/src/data/Hướng dẫn sử dụng.pdf"
+          href="https://github.com/Suzukisakae/Project_CNPM_Moi/blob/main/src/data/H%C6%B0%E1%BB%9Bng%20d%E1%BA%ABn%20s%E1%BB%AD%20d%E1%BB%A5ng.pdf"
           className="pdf-link"
           target="_blank"
           rel="noopener noreferrer"
