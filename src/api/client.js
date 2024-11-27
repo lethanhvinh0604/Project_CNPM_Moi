@@ -1,6 +1,6 @@
 import axios from 'axios'
-const path = 'http://localhost:3000'
-// const path = 'https://project-cnpm-moi-api.vercel.app'
+// const path = 'http://localhost:3000'
+const path = 'https://project-cnpm-moi-api.vercel.app'
 export default class APIClient {
   // Constructor để khởi tạo thuộc tính
   constructor(object) {
