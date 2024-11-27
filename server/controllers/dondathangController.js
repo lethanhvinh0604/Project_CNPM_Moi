@@ -1,8 +1,8 @@
 import DatDichVu from '../models/datdichvu.js'
 import catchAsync from '../utils/catchAsync.js'
 import AppError from '../utils/appError.js'
-import dayjs from 'dayjs'
-import customParseFormat from 'dayjs/plugin/customParseFormat.js'
+import dayjs from 'dayjs/esm/index.js'
+import customParseFormat from 'dayjs/esm/plugin/customParseFormat.js'
 dayjs.extend(customParseFormat)
 // Get all orders
 const getAllDonDatHang = catchAsync(async (req, res, next) => {
