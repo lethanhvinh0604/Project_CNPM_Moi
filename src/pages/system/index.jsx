@@ -13,6 +13,7 @@ import Page404 from './Page404'
 import Page401 from './Page401'
 import Page403 from './Page403'
 import Page500 from './Page500'
+import Help from './help/Help'
 
 export function System() {
   return (
@@ -32,6 +33,7 @@ export function System() {
         <Route path="/401-error" element={<Page401 />} />
         <Route path="/403-error" element={<Page403 />} />
         <Route path="/500-error" element={<Page500 />} />
+        <Route path="/help" element={<Help />} />
       </Routes>
     </>
   )

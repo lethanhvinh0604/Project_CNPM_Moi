@@ -73,6 +73,9 @@ function Header() {
             <a href="/chat-ai" className="link">
               Chat AI
             </a>
+            <a href="/help" className="link">
+              Trợ giúp
+            </a>
           </div>
           <div className="authButtons">
             <a href="/login" className="login">
@@ -312,7 +315,7 @@ const Navbar = styled.nav`
     }
   }
 
-  @media (max-width: 480px) {
+  @media (max-width: 240px) {
     .nav-link {
       display: none; /* Hide navigation links on very small screens */
     }
