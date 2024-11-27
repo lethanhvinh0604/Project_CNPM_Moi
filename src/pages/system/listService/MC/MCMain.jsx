@@ -7,6 +7,7 @@ import { ListNCContext } from '../../../../context/ListNCContext'
 import Pagination from '../../../../components/Pagination'
 import FilterMCSearch from './FilterMCSearch'
 import ResultMCSearch from './ResultMCSearch'
+import Loading from '../../Loading'
 
 function MCMain() {
   const { searchParams, currentPage, updatePage } = useContext(ListNCContext)
@@ -14,6 +15,8 @@ function MCMain() {
   const [totalPages, setTotalPages] = useState(1)
   const [totalResults, setTotalResults] = useState(0)
   const [reload, setReload] = useState(true)
+  const [loading, setLoading] = useState(true) // Add loading state
+
   const navigate = useNavigate()
 
   useEffect(() => {
@@ -26,24 +29,34 @@ function MCMain() {
 
     const apiClient = new APIClient('mc')
     const params = { ...searchParams, page: currentPage }
+    setLoading(true) // Set loading to true when starting to fetch data
     apiClient
       .findParams(params)
       .then((response) => {
         setMcData(response.data.mc || [])
         setTotalPages(response.data.totalPages || 1)
         setTotalResults(response.data.totalMC || 0)
+        setLoading(false) // Set loading to false when data is loaded
       })
       .catch((error) => {
         console.error(error)
+        setLoading(false) // Set loading to false when data is loaded
       })
   }, [searchParams, currentPage, navigate, reload])
 
-  console.log(mcData)
+  if (loading) {
+    return <Loading /> // Show Loading component when loading is true
+  }
+
   return (
     <NCMainWrapper>
       <FilterMCSearch />
       <ListNCMainWrapper className="container">
-        <ResultMCSearch resultSearch={mcData} totalResults={totalResults} setReload={setReload}/>
+        <ResultMCSearch
+          resultSearch={mcData}
+          totalResults={totalResults}
+          setReload={setReload}
+        />
         <Pagination
           currentPage={currentPage}
           totalPages={totalPages}

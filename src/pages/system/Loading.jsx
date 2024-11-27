@@ -20,6 +20,7 @@ function Loading() {
 }
 
 const LoadingWrapper = styled.div`
+  height: 100vh;
   .loader {
     background-color: var(--hover-color-2) !important;
     position: absolute;

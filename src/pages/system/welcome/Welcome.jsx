@@ -13,9 +13,12 @@ import HeroSection from './HeroSection'
 import SomeHall from './SomeHall'
 import SecondHeroSection from './SecondHeroSection'
 import IntroService from './IntroService'
+import Loading from '../Loading'
 
 function Welcome() {
   const [topHoiTruong, setTopHoiTruong] = useState([])
+  const [loading, setLoading] = useState(true) // Add loading state
+
 
   const [ref1, inView1] = useInView({ triggerOnce: true })
   const [ref2, inView2] = useInView({ triggerOnce: true })
@@ -28,11 +31,17 @@ function Welcome() {
       .find()
       .then((response) => {
         setTopHoiTruong(response.data.topHoiTruong)
+        setLoading(false)
       })
       .catch((error) => {
         console.error(error)
+        setLoading(false)
       })
   }, [])
+
+  if (loading) {
+    return <Loading /> // Show Loading component when loading is true
+  }
 
   return (
     <>
