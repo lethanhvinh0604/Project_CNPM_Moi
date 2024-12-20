@@ -212,6 +212,17 @@ const changePassword = catchAsync(async (req, res, next) => {
     return next(new AppError('Mật khẩu cũ không đúng', 401))
   }
 
+  // KIểm tra mật khẩu mới có đủ mạnh không(ít nhất 8 ký tự, có chữ hoa, chữ thường, số, ký tự đặc biệt)
+  const passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/
+  if (!passwordRegex.test(newPassword)) {
+    return next(
+      new AppError(
+        'Mật khẩu mới phải chứa ít nhất 8 ký tự, có chữ hoa, chữ thường, số và ký tự đặc biệt',
+        400
+      )
+    )
+  }
+
   // Cập nhật mật khẩu mới, không cần mã hóa vì đã mã hóa ở middleware
   user.Pass = newPassword
   await user.save()

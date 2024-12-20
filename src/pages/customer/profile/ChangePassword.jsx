@@ -32,6 +32,30 @@ function ChangePassword({ open, onClose }) {
       setSnackbarMessage('Đổi mật khẩu thành công')
     } catch (error) {
       setSnackbarMessage('Sai mật khẩu cũ')
+      const { response } = error
+      if (response) {
+        switch (response.status) {
+          case 400:
+            setSnackbarMessage(
+              'Mật khẩu không hợp lệ (phải chứa ít nhất 8 ký tự, có chữ hoa, chữ thường, số và ký tự đặc biệt)'
+            )
+            break
+
+          case 401:
+            setSnackbarMessage('Mật khẩu cũ không đúng')
+            break
+
+          case 404:
+            setSnackbarMessage('Không tìm thấy người dùng với email này')
+            break
+
+          default:
+            setSnackbarMessage('Đã có lỗi xảy ra')
+            break
+        }
+      } else {
+        setSnackbarMessage('Đã có lỗi xảy ra')
+      }
     }
     setSnackbarOpen(true)
     onClose()
